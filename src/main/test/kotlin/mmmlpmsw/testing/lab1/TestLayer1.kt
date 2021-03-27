@@ -2,6 +2,7 @@ package mmmlpmsw.testing.lab1
 
 import Functions
 import mmmlpmsw.testing.lab1.TestUtilities.Companion.assertBigDouble
+import org.junit.jupiter.api.Assertions.assertEquals
 
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.TestInstance
 import org.mockito.Mockito
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class Test {
+class TestLayer1 {
     private lateinit var mock: Functions
     private val PERIOD = 2 * Math.PI
 
@@ -17,6 +18,7 @@ class Test {
     fun initMock() {
         mock = Mockito.mock(Functions::class.java)
 
+        Mockito.`when`(mock.sin(Double.NEGATIVE_INFINITY)).thenReturn(Double.NaN)
         Mockito.`when`(mock.sin(0.0)).thenReturn(0.0)
         Mockito.`when`(mock.sin(-1.0E-8)).thenReturn(-1.0E-8)
         Mockito.`when`(mock.sin(-0.112)).thenReturn(-0.11176599215128519)
@@ -45,6 +47,7 @@ class Test {
         Mockito.`when`(mock.sin(-6.1789174)).thenReturn(0.10407907994255686)
         Mockito.`when`(mock.sin(-6.28)).thenReturn(0.0031853017931379904)
 
+        Mockito.`when`(mock.cos(Double.NEGATIVE_INFINITY)).thenReturn(Double.NaN)
         Mockito.`when`(mock.cos(0.0)).thenReturn(1.0)
         Mockito.`when`(mock.cos(-1.0E-8)).thenReturn(1.0)
         Mockito.`when`(mock.cos(-0.112)).thenReturn(0.9937345535898603)
@@ -73,6 +76,7 @@ class Test {
         Mockito.`when`(mock.cos(-6.1789174)).thenReturn(0.9945690248134168)
         Mockito.`when`(mock.cos(-6.28)).thenReturn(0.9999949269133752)
 
+        Mockito.`when`(mock.tan(Double.NEGATIVE_INFINITY)).thenReturn(Double.NaN)
         Mockito.`when`(mock.tan(0.0)).thenReturn(0.0)
         Mockito.`when`(mock.tan(-1.0E-8)).thenReturn(-1.0E-8)
         Mockito.`when`(mock.tan(-0.112)).thenReturn(-0.11247067111386154)
@@ -101,6 +105,7 @@ class Test {
         Mockito.`when`(mock.tan(-6.1789174)).thenReturn(0.1046474174701774)
         Mockito.`when`(mock.tan(-6.28)).thenReturn(0.003185317952531891)
 
+        Mockito.`when`(mock.cot(Double.NEGATIVE_INFINITY)).thenReturn(Double.NaN)
         Mockito.`when`(mock.cot(0.0)).thenReturn(Double.NaN)
         Mockito.`when`(mock.cot(-1.0E-8)).thenReturn(-1.0E8)
         Mockito.`when`(mock.cot(-0.112)).thenReturn(-8.89120683727079)
@@ -129,6 +134,7 @@ class Test {
         Mockito.`when`(mock.cot(-6.1789174)).thenReturn(9.555897547925458)
         Mockito.`when`(mock.cot(-6.28)).thenReturn(313.94040246598837)
 
+        Mockito.`when`(mock.sec(Double.NEGATIVE_INFINITY)).thenReturn(Double.NaN)
         Mockito.`when`(mock.sec(0.0)).thenReturn(1.0)
         Mockito.`when`(mock.sec(-1.0E-8)).thenReturn(1.0)
         Mockito.`when`(mock.sec(-0.112)).thenReturn(1.0063049497348218)
@@ -157,6 +163,7 @@ class Test {
         Mockito.`when`(mock.sec(-6.1789174)).thenReturn(1.0054606317420776)
         Mockito.`when`(mock.sec(-6.28)).thenReturn(1.000005073112361)
 
+        Mockito.`when`(mock.csc(Double.NEGATIVE_INFINITY)).thenReturn(Double.NaN)
         Mockito.`when`(mock.csc(0.0)).thenReturn(Double.NaN)
         Mockito.`when`(mock.csc(-1.0E-8)).thenReturn(-1.0E8)
         Mockito.`when`(mock.csc(-0.112)).thenReturn(-8.947265449461687)
@@ -524,6 +531,35 @@ class Test {
         Mockito.`when`(mock.csc(- 100 * PERIOD + -5.95)).thenReturn(3.0575914327947746)
         Mockito.`when`(mock.csc(- 100 * PERIOD + -6.1789174)).thenReturn(9.6080787853997)
         Mockito.`when`(mock.csc(- 100 * PERIOD + -6.28)).thenReturn(313.9419951209248)
+
+//===========================================================================================
+//                        positive values
+//===========================================================================================
+
+        Mockito.`when`(mock.ln(0.35)).thenReturn(-1.0498221244986778)
+        Mockito.`when`(mock.ln(4.339)).thenReturn(1.4676439068162137)
+        Mockito.`when`(mock.ln(10.0)).thenReturn(2.302585092994046)
+        Mockito.`when`(mock.ln(100000.0)).thenReturn(11.512925464970229)
+        Mockito.`when`(mock.ln(Double.POSITIVE_INFINITY)).thenReturn(Double.NaN)
+
+        Mockito.`when`(mock.log2(0.35)).thenReturn(-1.5145731728297585)
+        Mockito.`when`(mock.log2(4.339)).thenReturn(2.1173625861546554)
+        Mockito.`when`(mock.log2(10.0)).thenReturn(3.3219280948873626)
+        Mockito.`when`(mock.log2(100000.0)).thenReturn(16.609640474436812)
+        Mockito.`when`(mock.log2(Double.POSITIVE_INFINITY)).thenReturn(Double.NaN)
+
+        Mockito.`when`(mock.log5(0.35)).thenReturn(-0.6522911610246187)
+        Mockito.`when`(mock.log5(4.339)).thenReturn(0.9118984307984652)
+        Mockito.`when`(mock.log5(10.0)).thenReturn(1.4306765580733933)
+        Mockito.`when`(mock.log5(100000.0)).thenReturn(7.153382790366966)
+        Mockito.`when`(mock.log5(Double.POSITIVE_INFINITY)).thenReturn(Double.NaN)
+
+        Mockito.`when`(mock.log10(0.35)).thenReturn(-0.4559319556497244)
+        Mockito.`when`(mock.log10(4.339)).thenReturn(0.637389650129212)
+        Mockito.`when`(mock.log10(10.0)).thenReturn(1.0)
+        Mockito.`when`(mock.log10(100000.0)).thenReturn(5.0)
+        Mockito.`when`(mock.log10(Double.POSITIVE_INFINITY)).thenReturn(Double.NaN)
+
     }
 
     @Test
@@ -556,6 +592,11 @@ class Test {
         assertBigDouble(-2.2904271349315795, calculator.calculate(-5.95))
         assertBigDouble(-9.314531252837875E9, calculator.calculate(-6.1789174))
         assertBigDouble(-1.2658054556539495E33, calculator.calculate(-6.28))
+
+        assertEquals(5.633, calculator.calculate(0.35), 1E-3)
+        assertEquals(2.132, calculator.calculate(4.339), 1E-3)
+        assertEquals(2.517, calculator.calculate(10.0), 1E-3)
+        assertEquals(57.865, calculator.calculate(100000.0), 1E-3)
     }
 
 }
