@@ -3,19 +3,21 @@ package mmmlpmsw.testing.lab1
 import kotlin.math.abs
 
 class BasicFunctions {
-    val PRECISION = 1E-8
-
-    private fun sin(x: Double, cur: Double, n: Int = 1, res: Double = 0.0): Double {
-        if (abs(cur) < PRECISION) return res
-        return sin(x, cur * (-x * x / (2.0 * n * (2.0 * n + 1.0))), n + 1, res + cur)
-    }
+    private val PRECISION = 1E-12
 
     open fun sin(x: Double): Double {
+        if (x == Double.NEGATIVE_INFINITY)
+            return Double.NaN
         val x1 = x % (2 * Math.PI)
         if (abs(abs(x1) - Math.PI) < PRECISION || abs(abs(x1) - 2 * Math.PI) < PRECISION || abs(abs(x1) - 0.0) < PRECISION) {
             return 0.0
         }
         return sin(x1, x1)
+    }
+
+    private fun sin(x: Double, cur: Double, n: Int = 1, res: Double = 0.0): Double {
+        if (abs(cur) < PRECISION) return res
+        return sin(x, cur * (-x * x / (2.0 * n * (2.0 * n + 1.0))), n + 1, res + cur)
     }
 
     open fun ln(x: Double): Double {

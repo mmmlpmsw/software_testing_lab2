@@ -1,11 +1,11 @@
 import mmmlpmsw.testing.lab1.BasicFunctions
 import java.lang.Math.PI
 
-class Functions(private val basicFunctions: BasicFunctions) {
+open class Functions(private val basicFunctions: BasicFunctions = BasicFunctions()) {
 
     open fun sin(x: Double): Double = basicFunctions.sin(x)
 
-    open fun cos(x: Double) = basicFunctions.sin(x - PI/2)
+    open fun cos(x: Double) = basicFunctions.sin(x + PI/2)
 
     open fun tan(x: Double) = sin(x)/cos(x)
 
@@ -30,13 +30,3 @@ class Functions(private val basicFunctions: BasicFunctions) {
     }
 
 }
-//
-//fun main() {
-//    val function = Function()
-//    var x = -2 * Math.PI
-//    while (x <= 0) {
-//        if (abs(function.calculate(x)) <= 1e-8)
-//            println(x)
-//        x+= 1e-12
-//    }
-//}

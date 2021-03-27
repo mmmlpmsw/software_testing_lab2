@@ -3,7 +3,7 @@ package mmmlpmsw.testing.lab1
 import Functions
 import kotlin.math.pow
 
-open class FunctionCalculator(val f: Functions) {
+open class FunctionCalculator(val f: Functions = Functions()) {
     private val log2 = f::log2
     private val log5 = f::log5
     private val log10 = f::log10
