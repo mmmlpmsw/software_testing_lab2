@@ -13,6 +13,7 @@ import org.mockito.Mockito
 class TestLayer1 {
     private lateinit var mock: Functions
     private val PERIOD = 2 * Math.PI
+    private val EPS = 1e-10
 
     @BeforeAll
     fun initMock() {
@@ -46,6 +47,12 @@ class TestLayer1 {
         Mockito.`when`(mock.sin(-5.95)).thenReturn(0.32705481486974064)
         Mockito.`when`(mock.sin(-6.1789174)).thenReturn(0.10407907994255686)
         Mockito.`when`(mock.sin(-6.28)).thenReturn(0.0031853017931379904)
+        Mockito.`when`(mock.sin(-Math.PI/2)).thenReturn(-1.0)
+        Mockito.`when`(mock.sin(-Math.PI/2 + EPS)).thenReturn(-1.0)
+        Mockito.`when`(mock.sin(-Math.PI/2 - EPS)).thenReturn(-1.0)
+        Mockito.`when`(mock.sin(-3 * Math.PI/2)).thenReturn(1.0)
+        Mockito.`when`(mock.sin(-3 * Math.PI/2 + EPS)).thenReturn(1.0)
+        Mockito.`when`(mock.sin(-3 * Math.PI/2 - EPS)).thenReturn(1.0)
 
         Mockito.`when`(mock.cos(Double.NEGATIVE_INFINITY)).thenReturn(Double.NaN)
         Mockito.`when`(mock.cos(0.0)).thenReturn(1.0)
@@ -75,6 +82,12 @@ class TestLayer1 {
         Mockito.`when`(mock.cos(-5.95)).thenReturn(0.9450053693342275)
         Mockito.`when`(mock.cos(-6.1789174)).thenReturn(0.9945690248134168)
         Mockito.`when`(mock.cos(-6.28)).thenReturn(0.9999949269133752)
+        Mockito.`when`(mock.cos(-Math.PI/2)).thenReturn(6.123233995736766E-17)
+        Mockito.`when`(mock.cos(-Math.PI/2 + EPS)).thenReturn(1.0000006950637705E-10)
+        Mockito.`when`(mock.cos(-Math.PI/2 - EPS)).thenReturn(-9.999994704169715E-11)
+        Mockito.`when`(mock.cos(-3 * Math.PI/2)).thenReturn(-1.8369701987210297E-16)
+        Mockito.`when`(mock.cos(-3 * Math.PI/2 + EPS)).thenReturn(-1.0000019197105697E-10)
+        Mockito.`when`(mock.cos(-3 * Math.PI/2 - EPS)).thenReturn(9.999982457701723E-11)
 
         Mockito.`when`(mock.tan(Double.NEGATIVE_INFINITY)).thenReturn(Double.NaN)
         Mockito.`when`(mock.tan(0.0)).thenReturn(0.0)
@@ -104,6 +117,12 @@ class TestLayer1 {
         Mockito.`when`(mock.tan(-5.95)).thenReturn(0.3460877847711663)
         Mockito.`when`(mock.tan(-6.1789174)).thenReturn(0.1046474174701774)
         Mockito.`when`(mock.tan(-6.28)).thenReturn(0.003185317952531891)
+        Mockito.`when`(mock.tan(-Math.PI/2)).thenReturn(-1.633123935319537E16)
+        Mockito.`when`(mock.tan(-Math.PI/2 + EPS)).thenReturn(-9.999993049367125E9)
+        Mockito.`when`(mock.tan(-Math.PI/2 - EPS)).thenReturn(1.000000529583309E10)
+        Mockito.`when`(mock.tan(-3 * Math.PI/2)).thenReturn(-5.443746451065123E15)
+        Mockito.`when`(mock.tan(-3 * Math.PI/2 + EPS)).thenReturn(-9.999980802931156E9)
+        Mockito.`when`(mock.tan(-3 * Math.PI/2 - EPS)).thenReturn(1.000001754232905E10)
 
         Mockito.`when`(mock.cot(Double.NEGATIVE_INFINITY)).thenReturn(Double.NaN)
         Mockito.`when`(mock.cot(0.0)).thenReturn(Double.NaN)
@@ -133,6 +152,12 @@ class TestLayer1 {
         Mockito.`when`(mock.cot(-5.95)).thenReturn(2.8894403212213957)
         Mockito.`when`(mock.cot(-6.1789174)).thenReturn(9.555897547925458)
         Mockito.`when`(mock.cot(-6.28)).thenReturn(313.94040246598837)
+        Mockito.`when`(mock.cot(-Math.PI/2)).thenReturn(-6.123233995736766E-17)
+        Mockito.`when`(mock.cot(-Math.PI/2 + EPS)).thenReturn(-1.0000006950637707E-10)
+        Mockito.`when`(mock.cot(-Math.PI/2 - EPS)).thenReturn(9.999994704169715E-11)
+        Mockito.`when`(mock.cot(-3 * Math.PI/2)).thenReturn(-1.83697019872103E-16)
+        Mockito.`when`(mock.cot(-3 * Math.PI/2 + EPS)).thenReturn(-1.0000019197105696E-10)
+        Mockito.`when`(mock.cot(-3 * Math.PI/2 - EPS)).thenReturn(9.999982457701724E-11)
 
         Mockito.`when`(mock.sec(Double.NEGATIVE_INFINITY)).thenReturn(Double.NaN)
         Mockito.`when`(mock.sec(0.0)).thenReturn(1.0)
@@ -162,6 +187,12 @@ class TestLayer1 {
         Mockito.`when`(mock.sec(-5.95)).thenReturn(1.05819504571124)
         Mockito.`when`(mock.sec(-6.1789174)).thenReturn(1.0054606317420776)
         Mockito.`when`(mock.sec(-6.28)).thenReturn(1.000005073112361)
+        Mockito.`when`(mock.sec(-Math.PI/2)).thenReturn(1.633123935319537E16)
+        Mockito.`when`(mock.sec(-Math.PI/2 + EPS)).thenReturn(9.999993049367126E9)
+        Mockito.`when`(mock.sec(-Math.PI/2 - EPS)).thenReturn(-1.000000529583309E10)
+        Mockito.`when`(mock.sec(-3 * Math.PI/2)).thenReturn(-5.443746451065123E15)
+        Mockito.`when`(mock.sec(-3 * Math.PI/2 + EPS)).thenReturn(-9.999980802931156E9)
+        Mockito.`when`(mock.sec(-3 * Math.PI/2 - EPS)).thenReturn(1.000001754232905E10)
 
         Mockito.`when`(mock.csc(Double.NEGATIVE_INFINITY)).thenReturn(Double.NaN)
         Mockito.`when`(mock.csc(0.0)).thenReturn(Double.NaN)
@@ -191,6 +222,13 @@ class TestLayer1 {
         Mockito.`when`(mock.csc(-5.95)).thenReturn(3.0575914327947746)
         Mockito.`when`(mock.csc(-6.1789174)).thenReturn(9.6080787853997)
         Mockito.`when`(mock.csc(-6.28)).thenReturn(313.9419951209248)
+        Mockito.`when`(mock.csc(-Math.PI/2)).thenReturn(-1.0)
+        Mockito.`when`(mock.csc(-Math.PI/2 + EPS)).thenReturn(-1.0)
+        Mockito.`when`(mock.csc(-Math.PI/2 - EPS)).thenReturn(-1.0)
+        Mockito.`when`(mock.csc(-3 * Math.PI/2)).thenReturn(1.0)
+        Mockito.`when`(mock.csc(-3 * Math.PI/2 + EPS)).thenReturn(1.0)
+        Mockito.`when`(mock.csc(-3 * Math.PI/2 - EPS)).thenReturn(1.0)
+
 
 //--------------------------------------------------------------------------
 
@@ -221,6 +259,12 @@ class TestLayer1 {
         Mockito.`when`(mock.sin(-PERIOD + -5.95)).thenReturn(0.32705481486974064)
         Mockito.`when`(mock.sin(-PERIOD + -6.1789174)).thenReturn(0.10407907994255686)
         Mockito.`when`(mock.sin(-PERIOD + -6.28)).thenReturn(0.0031853017931379904)
+        Mockito.`when`(mock.sin(-PERIOD -Math.PI/2)).thenReturn(-1.0)
+        Mockito.`when`(mock.sin(-PERIOD -Math.PI/2 + EPS)).thenReturn(-1.0)
+        Mockito.`when`(mock.sin(-PERIOD -Math.PI/2 - EPS)).thenReturn(-1.0)
+        Mockito.`when`(mock.sin(-PERIOD -3 * Math.PI/2)).thenReturn(1.0)
+        Mockito.`when`(mock.sin(-PERIOD -3 * Math.PI/2 + EPS)).thenReturn(1.0)
+        Mockito.`when`(mock.sin(-PERIOD -3 * Math.PI/2 - EPS)).thenReturn(1.0)
 
         Mockito.`when`(mock.cos(-PERIOD + 0.0)).thenReturn(1.0)
         Mockito.`when`(mock.cos(-PERIOD + -1.0E-8)).thenReturn(1.0)
@@ -249,6 +293,12 @@ class TestLayer1 {
         Mockito.`when`(mock.cos(-PERIOD + -5.95)).thenReturn(0.9450053693342275)
         Mockito.`when`(mock.cos(-PERIOD + -6.1789174)).thenReturn(0.9945690248134168)
         Mockito.`when`(mock.cos(-PERIOD + -6.28)).thenReturn(0.9999949269133752)
+        Mockito.`when`(mock.cos(-PERIOD -Math.PI/2)).thenReturn(6.123233995736766E-17)
+        Mockito.`when`(mock.cos(-PERIOD -Math.PI/2 + EPS)).thenReturn(1.0000006950637705E-10)
+        Mockito.`when`(mock.cos(-PERIOD -Math.PI/2 - EPS)).thenReturn(-9.999994704169715E-11)
+        Mockito.`when`(mock.cos(-PERIOD -3 * Math.PI/2)).thenReturn(-1.8369701987210297E-16)
+        Mockito.`when`(mock.cos(-PERIOD -3 * Math.PI/2 + EPS)).thenReturn(-1.0000019197105697E-10)
+        Mockito.`when`(mock.cos(-PERIOD -3 * Math.PI/2 - EPS)).thenReturn(9.999982457701723E-11)
 
         Mockito.`when`(mock.tan(-PERIOD + 0.0)).thenReturn(0.0)
         Mockito.`when`(mock.tan(-PERIOD + -1.0E-8)).thenReturn(-1.0E-8)
@@ -277,6 +327,12 @@ class TestLayer1 {
         Mockito.`when`(mock.tan(-PERIOD + -5.95)).thenReturn(0.3460877847711663)
         Mockito.`when`(mock.tan(-PERIOD + -6.1789174)).thenReturn(0.1046474174701774)
         Mockito.`when`(mock.tan(-PERIOD + -6.28)).thenReturn(0.003185317952531891)
+        Mockito.`when`(mock.tan(-PERIOD -Math.PI/2)).thenReturn(-1.633123935319537E16)
+        Mockito.`when`(mock.tan(-PERIOD -Math.PI/2 + EPS)).thenReturn(-9.999993049367125E9)
+        Mockito.`when`(mock.tan(-PERIOD -Math.PI/2 - EPS)).thenReturn(1.000000529583309E10)
+        Mockito.`when`(mock.tan(-PERIOD -3 * Math.PI/2)).thenReturn(-5.443746451065123E15)
+        Mockito.`when`(mock.tan(-PERIOD -3 * Math.PI/2 + EPS)).thenReturn(-9.999980802931156E9)
+        Mockito.`when`(mock.tan(-PERIOD -3 * Math.PI/2 - EPS)).thenReturn(1.000001754232905E10)
 
         Mockito.`when`(mock.cot(-PERIOD + 0.0)).thenReturn(Double.NaN)
         Mockito.`when`(mock.cot(-PERIOD + -1.0E-8)).thenReturn(-1.0E8)
@@ -305,6 +361,12 @@ class TestLayer1 {
         Mockito.`when`(mock.cot(-PERIOD + -5.95)).thenReturn(2.8894403212213957)
         Mockito.`when`(mock.cot(-PERIOD + -6.1789174)).thenReturn(9.555897547925458)
         Mockito.`when`(mock.cot(-PERIOD + -6.28)).thenReturn(313.94040246598837)
+        Mockito.`when`(mock.cot(-PERIOD -Math.PI/2)).thenReturn(-6.123233995736766E-17)
+        Mockito.`when`(mock.cot(-PERIOD -Math.PI/2 + EPS)).thenReturn(-1.0000006950637707E-10)
+        Mockito.`when`(mock.cot(-PERIOD -Math.PI/2 - EPS)).thenReturn(9.999994704169715E-11)
+        Mockito.`when`(mock.cot(-PERIOD -3 * Math.PI/2)).thenReturn(-1.83697019872103E-16)
+        Mockito.`when`(mock.cot(-PERIOD -3 * Math.PI/2 + EPS)).thenReturn(-1.0000019197105696E-10)
+        Mockito.`when`(mock.cot(-PERIOD -3 * Math.PI/2 - EPS)).thenReturn(9.999982457701724E-11)
 
         Mockito.`when`(mock.sec(-PERIOD + 0.0)).thenReturn(1.0)
         Mockito.`when`(mock.sec(-PERIOD + -1.0E-8)).thenReturn(1.0)
@@ -333,6 +395,12 @@ class TestLayer1 {
         Mockito.`when`(mock.sec(-PERIOD + -5.95)).thenReturn(1.05819504571124)
         Mockito.`when`(mock.sec(-PERIOD + -6.1789174)).thenReturn(1.0054606317420776)
         Mockito.`when`(mock.sec(-PERIOD + -6.28)).thenReturn(1.000005073112361)
+        Mockito.`when`(mock.sec(-PERIOD -Math.PI/2)).thenReturn(1.633123935319537E16)
+        Mockito.`when`(mock.sec(-PERIOD -Math.PI/2 + EPS)).thenReturn(9.999993049367126E9)
+        Mockito.`when`(mock.sec(-PERIOD -Math.PI/2 - EPS)).thenReturn(-1.000000529583309E10)
+        Mockito.`when`(mock.sec(-PERIOD -3 * Math.PI/2)).thenReturn(-5.443746451065123E15)
+        Mockito.`when`(mock.sec(-PERIOD -3 * Math.PI/2 + EPS)).thenReturn(-9.999980802931156E9)
+        Mockito.`when`(mock.sec(-PERIOD -3 * Math.PI/2 - EPS)).thenReturn(1.000001754232905E10)
 
         Mockito.`when`(mock.csc(-PERIOD + 0.0)).thenReturn(Double.NaN)
         Mockito.`when`(mock.csc(-PERIOD + -1.0E-8)).thenReturn(-1.0E8)
@@ -361,6 +429,12 @@ class TestLayer1 {
         Mockito.`when`(mock.csc(-PERIOD + -5.95)).thenReturn(3.0575914327947746)
         Mockito.`when`(mock.csc(-PERIOD + -6.1789174)).thenReturn(9.6080787853997)
         Mockito.`when`(mock.csc(-PERIOD + -6.28)).thenReturn(313.9419951209248)
+        Mockito.`when`(mock.csc(-PERIOD -Math.PI/2)).thenReturn(-1.0)
+        Mockito.`when`(mock.csc(-PERIOD -Math.PI/2 + EPS)).thenReturn(-1.0)
+        Mockito.`when`(mock.csc(-PERIOD -Math.PI/2 - EPS)).thenReturn(-1.0)
+        Mockito.`when`(mock.csc(-PERIOD -3 * Math.PI/2)).thenReturn(1.0)
+        Mockito.`when`(mock.csc(-PERIOD -3 * Math.PI/2 + EPS)).thenReturn(1.0)
+        Mockito.`when`(mock.csc(-PERIOD -3 * Math.PI/2 - EPS)).thenReturn(1.0)
 
 //--------------------------------------------------------------------------
 
@@ -391,6 +465,12 @@ class TestLayer1 {
         Mockito.`when`(mock.sin(- 100 * PERIOD + -5.95)).thenReturn(0.32705481486974064)
         Mockito.`when`(mock.sin(- 100 * PERIOD + -6.1789174)).thenReturn(0.10407907994255686)
         Mockito.`when`(mock.sin(- 100 * PERIOD + -6.28)).thenReturn(0.0031853017931379904)
+        Mockito.`when`(mock.sin(- 100 * PERIOD -Math.PI/2)).thenReturn(-1.0)
+        Mockito.`when`(mock.sin(- 100 * PERIOD -Math.PI/2 + EPS)).thenReturn(-1.0)
+        Mockito.`when`(mock.sin(- 100 * PERIOD -Math.PI/2 - EPS)).thenReturn(-1.0)
+        Mockito.`when`(mock.sin(- 100 * PERIOD -3 * Math.PI/2)).thenReturn(1.0)
+        Mockito.`when`(mock.sin(- 100 * PERIOD -3 * Math.PI/2 + EPS)).thenReturn(1.0)
+        Mockito.`when`(mock.sin(- 100 * PERIOD -3 * Math.PI/2 - EPS)).thenReturn(1.0)
 
         Mockito.`when`(mock.cos(- 100 * PERIOD + 0.0)).thenReturn(1.0)
         Mockito.`when`(mock.cos(- 100 * PERIOD + -1.0E-8)).thenReturn(1.0)
@@ -419,6 +499,12 @@ class TestLayer1 {
         Mockito.`when`(mock.cos(- 100 * PERIOD + -5.95)).thenReturn(0.9450053693342275)
         Mockito.`when`(mock.cos(- 100 * PERIOD + -6.1789174)).thenReturn(0.9945690248134168)
         Mockito.`when`(mock.cos(- 100 * PERIOD + -6.28)).thenReturn(0.9999949269133752)
+        Mockito.`when`(mock.cos(- 100 * PERIOD -Math.PI/2)).thenReturn(6.123233995736766E-17)
+        Mockito.`when`(mock.cos(- 100 * PERIOD -Math.PI/2 + EPS)).thenReturn(1.0000006950637705E-10)
+        Mockito.`when`(mock.cos(- 100 * PERIOD -Math.PI/2 - EPS)).thenReturn(-9.999994704169715E-11)
+        Mockito.`when`(mock.cos(- 100 * PERIOD -3 * Math.PI/2)).thenReturn(-1.8369701987210297E-16)
+        Mockito.`when`(mock.cos(- 100 * PERIOD -3 * Math.PI/2 + EPS)).thenReturn(-1.0000019197105697E-10)
+        Mockito.`when`(mock.cos(- 100 * PERIOD -3 * Math.PI/2 - EPS)).thenReturn(9.999982457701723E-11)
 
         Mockito.`when`(mock.tan(- 100 * PERIOD + 0.0)).thenReturn(0.0)
         Mockito.`when`(mock.tan(- 100 * PERIOD + -1.0E-8)).thenReturn(-1.0E-8)
@@ -447,6 +533,12 @@ class TestLayer1 {
         Mockito.`when`(mock.tan(- 100 * PERIOD + -5.95)).thenReturn(0.3460877847711663)
         Mockito.`when`(mock.tan(- 100 * PERIOD + -6.1789174)).thenReturn(0.1046474174701774)
         Mockito.`when`(mock.tan(- 100 * PERIOD + -6.28)).thenReturn(0.003185317952531891)
+        Mockito.`when`(mock.tan(- 100 * PERIOD -Math.PI/2)).thenReturn(-1.633123935319537E16)
+        Mockito.`when`(mock.tan(- 100 * PERIOD -Math.PI/2 + EPS)).thenReturn(-9.999993049367125E9)
+        Mockito.`when`(mock.tan(- 100 * PERIOD -Math.PI/2 - EPS)).thenReturn(1.000000529583309E10)
+        Mockito.`when`(mock.tan(- 100 * PERIOD -3 * Math.PI/2)).thenReturn(-5.443746451065123E15)
+        Mockito.`when`(mock.tan(- 100 * PERIOD -3 * Math.PI/2 + EPS)).thenReturn(-9.999980802931156E9)
+        Mockito.`when`(mock.tan(- 100 * PERIOD -3 * Math.PI/2 - EPS)).thenReturn(1.000001754232905E10)
 
         Mockito.`when`(mock.cot(- 100 * PERIOD + 0.0)).thenReturn(Double.NaN)
         Mockito.`when`(mock.cot(- 100 * PERIOD + -1.0E-8)).thenReturn(-1.0E8)
@@ -475,6 +567,12 @@ class TestLayer1 {
         Mockito.`when`(mock.cot(- 100 * PERIOD + -5.95)).thenReturn(2.8894403212213957)
         Mockito.`when`(mock.cot(- 100 * PERIOD + -6.1789174)).thenReturn(9.555897547925458)
         Mockito.`when`(mock.cot(- 100 * PERIOD + -6.28)).thenReturn(313.94040246598837)
+        Mockito.`when`(mock.cot(- 100 * PERIOD -Math.PI/2)).thenReturn(-6.123233995736766E-17)
+        Mockito.`when`(mock.cot(- 100 * PERIOD -Math.PI/2 + EPS)).thenReturn(-1.0000006950637707E-10)
+        Mockito.`when`(mock.cot(- 100 * PERIOD -Math.PI/2 - EPS)).thenReturn(9.999994704169715E-11)
+        Mockito.`when`(mock.cot(- 100 * PERIOD -3 * Math.PI/2)).thenReturn(-1.83697019872103E-16)
+        Mockito.`when`(mock.cot(- 100 * PERIOD -3 * Math.PI/2 + EPS)).thenReturn(-1.0000019197105696E-10)
+        Mockito.`when`(mock.cot(- 100 * PERIOD -3 * Math.PI/2 - EPS)).thenReturn(9.999982457701724E-11)
 
         Mockito.`when`(mock.sec(- 100 * PERIOD + 0.0)).thenReturn(1.0)
         Mockito.`when`(mock.sec(- 100 * PERIOD + -1.0E-8)).thenReturn(1.0)
@@ -503,6 +601,12 @@ class TestLayer1 {
         Mockito.`when`(mock.sec(- 100 * PERIOD + -5.95)).thenReturn(1.05819504571124)
         Mockito.`when`(mock.sec(- 100 * PERIOD + -6.1789174)).thenReturn(1.0054606317420776)
         Mockito.`when`(mock.sec(- 100 * PERIOD + -6.28)).thenReturn(1.000005073112361)
+        Mockito.`when`(mock.sec(- 100 * PERIOD -Math.PI/2)).thenReturn(1.633123935319537E16)
+        Mockito.`when`(mock.sec(- 100 * PERIOD -Math.PI/2 + EPS)).thenReturn(9.999993049367126E9)
+        Mockito.`when`(mock.sec(- 100 * PERIOD -Math.PI/2 - EPS)).thenReturn(-1.000000529583309E10)
+        Mockito.`when`(mock.sec(- 100 * PERIOD -3 * Math.PI/2)).thenReturn(-5.443746451065123E15)
+        Mockito.`when`(mock.sec(- 100 * PERIOD -3 * Math.PI/2 + EPS)).thenReturn(-9.999980802931156E9)
+        Mockito.`when`(mock.sec(- 100 * PERIOD -3 * Math.PI/2 - EPS)).thenReturn(1.000001754232905E10)
 
         Mockito.`when`(mock.csc(- 100 * PERIOD + 0.0)).thenReturn(Double.NaN)
         Mockito.`when`(mock.csc(- 100 * PERIOD + -1.0E-8)).thenReturn(-1.0E8)
@@ -531,6 +635,12 @@ class TestLayer1 {
         Mockito.`when`(mock.csc(- 100 * PERIOD + -5.95)).thenReturn(3.0575914327947746)
         Mockito.`when`(mock.csc(- 100 * PERIOD + -6.1789174)).thenReturn(9.6080787853997)
         Mockito.`when`(mock.csc(- 100 * PERIOD + -6.28)).thenReturn(313.9419951209248)
+        Mockito.`when`(mock.csc(- 100 * PERIOD -Math.PI/2)).thenReturn(-1.0)
+        Mockito.`when`(mock.csc(- 100 * PERIOD -Math.PI/2 + EPS)).thenReturn(-1.0)
+        Mockito.`when`(mock.csc(- 100 * PERIOD -Math.PI/2 - EPS)).thenReturn(-1.0)
+        Mockito.`when`(mock.csc(- 100 * PERIOD -3 * Math.PI/2)).thenReturn(1.0)
+        Mockito.`when`(mock.csc(- 100 * PERIOD -3 * Math.PI/2 + EPS)).thenReturn(1.0)
+        Mockito.`when`(mock.csc(- 100 * PERIOD -3 * Math.PI/2 - EPS)).thenReturn(1.0)
 
 //===========================================================================================
 //                        positive values
