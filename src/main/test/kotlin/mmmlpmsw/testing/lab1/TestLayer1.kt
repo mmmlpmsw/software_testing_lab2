@@ -11,13 +11,14 @@ import org.mockito.Mockito
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class TestLayer1 {
-    private lateinit var mock: Functions
+    private lateinit var calculator: FunctionCalculator
     private val PERIOD = 2 * Math.PI
     private val EPS = 1e-10
 
     @BeforeAll
     fun initMock() {
-        mock = Mockito.mock(Functions::class.java)
+        val mock = Mockito.mock(Functions::class.java)
+        calculator = FunctionCalculator(mock)
 
         Mockito.`when`(mock.sin(Double.NEGATIVE_INFINITY)).thenReturn(Double.NaN)
         Mockito.`when`(mock.sin(0.0)).thenReturn(0.0)
@@ -82,10 +83,10 @@ class TestLayer1 {
         Mockito.`when`(mock.cos(-5.95)).thenReturn(0.9450053693342275)
         Mockito.`when`(mock.cos(-6.1789174)).thenReturn(0.9945690248134168)
         Mockito.`when`(mock.cos(-6.28)).thenReturn(0.9999949269133752)
-        Mockito.`when`(mock.cos(-Math.PI/2)).thenReturn(6.123233995736766E-17)
+        Mockito.`when`(mock.cos(-Math.PI/2)).thenReturn(0.0)
         Mockito.`when`(mock.cos(-Math.PI/2 + EPS)).thenReturn(1.0000006950637705E-10)
         Mockito.`when`(mock.cos(-Math.PI/2 - EPS)).thenReturn(-9.999994704169715E-11)
-        Mockito.`when`(mock.cos(-3 * Math.PI/2)).thenReturn(-1.8369701987210297E-16)
+        Mockito.`when`(mock.cos(-3 * Math.PI/2)).thenReturn(0.0)
         Mockito.`when`(mock.cos(-3 * Math.PI/2 + EPS)).thenReturn(-1.0000019197105697E-10)
         Mockito.`when`(mock.cos(-3 * Math.PI/2 - EPS)).thenReturn(9.999982457701723E-11)
 
@@ -117,10 +118,10 @@ class TestLayer1 {
         Mockito.`when`(mock.tan(-5.95)).thenReturn(0.3460877847711663)
         Mockito.`when`(mock.tan(-6.1789174)).thenReturn(0.1046474174701774)
         Mockito.`when`(mock.tan(-6.28)).thenReturn(0.003185317952531891)
-        Mockito.`when`(mock.tan(-Math.PI/2)).thenReturn(-1.633123935319537E16)
+        Mockito.`when`(mock.tan(-Math.PI/2)).thenReturn(Double.NaN)
         Mockito.`when`(mock.tan(-Math.PI/2 + EPS)).thenReturn(-9.999993049367125E9)
         Mockito.`when`(mock.tan(-Math.PI/2 - EPS)).thenReturn(1.000000529583309E10)
-        Mockito.`when`(mock.tan(-3 * Math.PI/2)).thenReturn(-5.443746451065123E15)
+        Mockito.`when`(mock.tan(-3 * Math.PI/2)).thenReturn(Double.NaN)
         Mockito.`when`(mock.tan(-3 * Math.PI/2 + EPS)).thenReturn(-9.999980802931156E9)
         Mockito.`when`(mock.tan(-3 * Math.PI/2 - EPS)).thenReturn(1.000001754232905E10)
 
@@ -187,10 +188,10 @@ class TestLayer1 {
         Mockito.`when`(mock.sec(-5.95)).thenReturn(1.05819504571124)
         Mockito.`when`(mock.sec(-6.1789174)).thenReturn(1.0054606317420776)
         Mockito.`when`(mock.sec(-6.28)).thenReturn(1.000005073112361)
-        Mockito.`when`(mock.sec(-Math.PI/2)).thenReturn(1.633123935319537E16)
+        Mockito.`when`(mock.sec(-Math.PI/2)).thenReturn(Double.NaN)
         Mockito.`when`(mock.sec(-Math.PI/2 + EPS)).thenReturn(9.999993049367126E9)
         Mockito.`when`(mock.sec(-Math.PI/2 - EPS)).thenReturn(-1.000000529583309E10)
-        Mockito.`when`(mock.sec(-3 * Math.PI/2)).thenReturn(-5.443746451065123E15)
+        Mockito.`when`(mock.sec(-3 * Math.PI/2)).thenReturn(Double.NaN)
         Mockito.`when`(mock.sec(-3 * Math.PI/2 + EPS)).thenReturn(-9.999980802931156E9)
         Mockito.`when`(mock.sec(-3 * Math.PI/2 - EPS)).thenReturn(1.000001754232905E10)
 
@@ -293,10 +294,10 @@ class TestLayer1 {
         Mockito.`when`(mock.cos(-PERIOD + -5.95)).thenReturn(0.9450053693342275)
         Mockito.`when`(mock.cos(-PERIOD + -6.1789174)).thenReturn(0.9945690248134168)
         Mockito.`when`(mock.cos(-PERIOD + -6.28)).thenReturn(0.9999949269133752)
-        Mockito.`when`(mock.cos(-PERIOD -Math.PI/2)).thenReturn(6.123233995736766E-17)
+        Mockito.`when`(mock.cos(-PERIOD -Math.PI/2)).thenReturn(0.0)
         Mockito.`when`(mock.cos(-PERIOD -Math.PI/2 + EPS)).thenReturn(1.0000006950637705E-10)
         Mockito.`when`(mock.cos(-PERIOD -Math.PI/2 - EPS)).thenReturn(-9.999994704169715E-11)
-        Mockito.`when`(mock.cos(-PERIOD -3 * Math.PI/2)).thenReturn(-1.8369701987210297E-16)
+        Mockito.`when`(mock.cos(-PERIOD -3 * Math.PI/2)).thenReturn(0.0)
         Mockito.`when`(mock.cos(-PERIOD -3 * Math.PI/2 + EPS)).thenReturn(-1.0000019197105697E-10)
         Mockito.`when`(mock.cos(-PERIOD -3 * Math.PI/2 - EPS)).thenReturn(9.999982457701723E-11)
 
@@ -327,10 +328,10 @@ class TestLayer1 {
         Mockito.`when`(mock.tan(-PERIOD + -5.95)).thenReturn(0.3460877847711663)
         Mockito.`when`(mock.tan(-PERIOD + -6.1789174)).thenReturn(0.1046474174701774)
         Mockito.`when`(mock.tan(-PERIOD + -6.28)).thenReturn(0.003185317952531891)
-        Mockito.`when`(mock.tan(-PERIOD -Math.PI/2)).thenReturn(-1.633123935319537E16)
+        Mockito.`when`(mock.tan(-PERIOD -Math.PI/2)).thenReturn(Double.NaN)
         Mockito.`when`(mock.tan(-PERIOD -Math.PI/2 + EPS)).thenReturn(-9.999993049367125E9)
         Mockito.`when`(mock.tan(-PERIOD -Math.PI/2 - EPS)).thenReturn(1.000000529583309E10)
-        Mockito.`when`(mock.tan(-PERIOD -3 * Math.PI/2)).thenReturn(-5.443746451065123E15)
+        Mockito.`when`(mock.tan(-PERIOD -3 * Math.PI/2)).thenReturn(Double.NaN)
         Mockito.`when`(mock.tan(-PERIOD -3 * Math.PI/2 + EPS)).thenReturn(-9.999980802931156E9)
         Mockito.`when`(mock.tan(-PERIOD -3 * Math.PI/2 - EPS)).thenReturn(1.000001754232905E10)
 
@@ -395,10 +396,10 @@ class TestLayer1 {
         Mockito.`when`(mock.sec(-PERIOD + -5.95)).thenReturn(1.05819504571124)
         Mockito.`when`(mock.sec(-PERIOD + -6.1789174)).thenReturn(1.0054606317420776)
         Mockito.`when`(mock.sec(-PERIOD + -6.28)).thenReturn(1.000005073112361)
-        Mockito.`when`(mock.sec(-PERIOD -Math.PI/2)).thenReturn(1.633123935319537E16)
+        Mockito.`when`(mock.sec(-PERIOD -Math.PI/2)).thenReturn(Double.NaN)
         Mockito.`when`(mock.sec(-PERIOD -Math.PI/2 + EPS)).thenReturn(9.999993049367126E9)
         Mockito.`when`(mock.sec(-PERIOD -Math.PI/2 - EPS)).thenReturn(-1.000000529583309E10)
-        Mockito.`when`(mock.sec(-PERIOD -3 * Math.PI/2)).thenReturn(-5.443746451065123E15)
+        Mockito.`when`(mock.sec(-PERIOD -3 * Math.PI/2)).thenReturn(Double.NaN)
         Mockito.`when`(mock.sec(-PERIOD -3 * Math.PI/2 + EPS)).thenReturn(-9.999980802931156E9)
         Mockito.`when`(mock.sec(-PERIOD -3 * Math.PI/2 - EPS)).thenReturn(1.000001754232905E10)
 
@@ -499,10 +500,10 @@ class TestLayer1 {
         Mockito.`when`(mock.cos(- 100 * PERIOD + -5.95)).thenReturn(0.9450053693342275)
         Mockito.`when`(mock.cos(- 100 * PERIOD + -6.1789174)).thenReturn(0.9945690248134168)
         Mockito.`when`(mock.cos(- 100 * PERIOD + -6.28)).thenReturn(0.9999949269133752)
-        Mockito.`when`(mock.cos(- 100 * PERIOD -Math.PI/2)).thenReturn(6.123233995736766E-17)
+        Mockito.`when`(mock.cos(- 100 * PERIOD -Math.PI/2)).thenReturn(0.0)
         Mockito.`when`(mock.cos(- 100 * PERIOD -Math.PI/2 + EPS)).thenReturn(1.0000006950637705E-10)
         Mockito.`when`(mock.cos(- 100 * PERIOD -Math.PI/2 - EPS)).thenReturn(-9.999994704169715E-11)
-        Mockito.`when`(mock.cos(- 100 * PERIOD -3 * Math.PI/2)).thenReturn(-1.8369701987210297E-16)
+        Mockito.`when`(mock.cos(- 100 * PERIOD -3 * Math.PI/2)).thenReturn(0.0)
         Mockito.`when`(mock.cos(- 100 * PERIOD -3 * Math.PI/2 + EPS)).thenReturn(-1.0000019197105697E-10)
         Mockito.`when`(mock.cos(- 100 * PERIOD -3 * Math.PI/2 - EPS)).thenReturn(9.999982457701723E-11)
 
@@ -533,10 +534,10 @@ class TestLayer1 {
         Mockito.`when`(mock.tan(- 100 * PERIOD + -5.95)).thenReturn(0.3460877847711663)
         Mockito.`when`(mock.tan(- 100 * PERIOD + -6.1789174)).thenReturn(0.1046474174701774)
         Mockito.`when`(mock.tan(- 100 * PERIOD + -6.28)).thenReturn(0.003185317952531891)
-        Mockito.`when`(mock.tan(- 100 * PERIOD -Math.PI/2)).thenReturn(-1.633123935319537E16)
+        Mockito.`when`(mock.tan(- 100 * PERIOD -Math.PI/2)).thenReturn(Double.NaN)
         Mockito.`when`(mock.tan(- 100 * PERIOD -Math.PI/2 + EPS)).thenReturn(-9.999993049367125E9)
         Mockito.`when`(mock.tan(- 100 * PERIOD -Math.PI/2 - EPS)).thenReturn(1.000000529583309E10)
-        Mockito.`when`(mock.tan(- 100 * PERIOD -3 * Math.PI/2)).thenReturn(-5.443746451065123E15)
+        Mockito.`when`(mock.tan(- 100 * PERIOD -3 * Math.PI/2)).thenReturn(Double.NaN)
         Mockito.`when`(mock.tan(- 100 * PERIOD -3 * Math.PI/2 + EPS)).thenReturn(-9.999980802931156E9)
         Mockito.`when`(mock.tan(- 100 * PERIOD -3 * Math.PI/2 - EPS)).thenReturn(1.000001754232905E10)
 
@@ -601,10 +602,10 @@ class TestLayer1 {
         Mockito.`when`(mock.sec(- 100 * PERIOD + -5.95)).thenReturn(1.05819504571124)
         Mockito.`when`(mock.sec(- 100 * PERIOD + -6.1789174)).thenReturn(1.0054606317420776)
         Mockito.`when`(mock.sec(- 100 * PERIOD + -6.28)).thenReturn(1.000005073112361)
-        Mockito.`when`(mock.sec(- 100 * PERIOD -Math.PI/2)).thenReturn(1.633123935319537E16)
+        Mockito.`when`(mock.sec(- 100 * PERIOD -Math.PI/2)).thenReturn(Double.NaN)
         Mockito.`when`(mock.sec(- 100 * PERIOD -Math.PI/2 + EPS)).thenReturn(9.999993049367126E9)
         Mockito.`when`(mock.sec(- 100 * PERIOD -Math.PI/2 - EPS)).thenReturn(-1.000000529583309E10)
-        Mockito.`when`(mock.sec(- 100 * PERIOD -3 * Math.PI/2)).thenReturn(-5.443746451065123E15)
+        Mockito.`when`(mock.sec(- 100 * PERIOD -3 * Math.PI/2)).thenReturn(Double.NaN)
         Mockito.`when`(mock.sec(- 100 * PERIOD -3 * Math.PI/2 + EPS)).thenReturn(-9.999980802931156E9)
         Mockito.`when`(mock.sec(- 100 * PERIOD -3 * Math.PI/2 - EPS)).thenReturn(1.000001754232905E10)
 
@@ -673,8 +674,7 @@ class TestLayer1 {
     }
 
     @Test
-    fun aaaaa() { //todo move to different tests
-        val calculator = FunctionCalculator(mock)
+    fun testOnMainPeriod() {
         assertBigDouble(Double.NaN, calculator.calculate(0.0))
         assertBigDouble(Double.NaN, calculator.calculate(Double.POSITIVE_INFINITY))
         assertBigDouble(Double.NaN, calculator.calculate(Double.NEGATIVE_INFINITY))
@@ -706,10 +706,97 @@ class TestLayer1 {
         assertBigDouble(-9.314531252837875E9, calculator.calculate(-6.1789174))
         assertBigDouble(-1.2658054556539495E33, calculator.calculate(-6.28))
 
+    }
+
+    @Test
+    fun testAsymptotesAndCloserToThem() {
+        assertBigDouble(Double.NaN, calculator.calculate(-Math.PI/2))
+        assertBigDouble(Double.NEGATIVE_INFINITY, calculator.calculate(-Math.PI/2 + EPS))
+        assertBigDouble(Double.POSITIVE_INFINITY, calculator.calculate(-Math.PI/2 - EPS))
+        assertBigDouble(Double.NaN, calculator.calculate(-3 * Math.PI/2))
+        assertBigDouble(Double.POSITIVE_INFINITY, calculator.calculate(-3 * Math.PI/2 + EPS))
+        assertBigDouble(Double.NEGATIVE_INFINITY, calculator.calculate(-3 * Math.PI/2 - EPS))
+
+        assertBigDouble(Double.NaN, calculator.calculate(-Math.PI/2 - PERIOD))
+        assertBigDouble(Double.NEGATIVE_INFINITY, calculator.calculate(-Math.PI/2 + EPS - PERIOD))
+        assertBigDouble(Double.POSITIVE_INFINITY, calculator.calculate(-Math.PI/2 - EPS - PERIOD))
+        assertBigDouble(Double.NaN, calculator.calculate(-3 * Math.PI/2 - PERIOD))
+        assertBigDouble(Double.POSITIVE_INFINITY, calculator.calculate(-3 * Math.PI/2 + EPS - PERIOD))
+        assertBigDouble(Double.NEGATIVE_INFINITY, calculator.calculate(-3 * Math.PI/2 - EPS - PERIOD))
+
+        assertBigDouble(Double.NaN, calculator.calculate(-Math.PI/2 - 100 * PERIOD))
+        assertBigDouble(Double.NEGATIVE_INFINITY, calculator.calculate(-Math.PI/2 + EPS - 100 * PERIOD))
+        assertBigDouble(Double.POSITIVE_INFINITY, calculator.calculate(- 100 * PERIOD - Math.PI/2 - EPS))
+        assertBigDouble(Double.NaN, calculator.calculate(-3 * Math.PI/2 - 100 * PERIOD))
+        assertBigDouble(Double.POSITIVE_INFINITY, calculator.calculate(-3 * Math.PI/2 + EPS - 100 * PERIOD))
+        assertBigDouble(Double.NEGATIVE_INFINITY, calculator.calculate(-3 * Math.PI/2 - EPS - 100 * PERIOD))
+    }
+
+    @Test
+    fun testOnPeriod() {
+        assertBigDouble(-1.562500435646825E110, calculator.calculate(-PERIOD -1.0E-8))
+        assertBigDouble(-7.199400495612413E12, calculator.calculate(-PERIOD -0.112))
+        assertBigDouble(-210297.749052139, calculator.calculate(-PERIOD -0.5))
+        assertBigDouble(-1757.8922042876907, calculator.calculate(-PERIOD -0.64))
+        assertBigDouble(-1.869931113367555E7, calculator.calculate(-PERIOD -0.66))
+        assertBigDouble(1.4542650843086908E7, calculator.calculate(-PERIOD -2.25))
+        assertBigDouble(4756791.712747779, calculator.calculate(-PERIOD -2.2818))
+        assertBigDouble(6892356.123178437, calculator.calculate(-PERIOD -2.303))
+        assertBigDouble(4.661155269375071E7, calculator.calculate(-PERIOD -2.344))
+        assertEquals(0.0, calculator.calculate(-PERIOD -3 * Math.PI / 4), 1E-6)
+        assertBigDouble(-3.1853823000403974E7, calculator.calculate(-PERIOD -2.359))
+        assertBigDouble(2.610368742533695E7, calculator.calculate(-PERIOD -2.422))
+        assertBigDouble(-1206454.380274456, calculator.calculate(-PERIOD -2.42270101))
+        assertBigDouble(-2.5475768135351714E8, calculator.calculate(-PERIOD -2.4381))
+        assertBigDouble(-5500786.236013713, calculator.calculate(-PERIOD -2.509))
+        assertBigDouble(-2191.8274562229167, calculator.calculate(-PERIOD -2.59999))
+        assertBigDouble(-1937943.7119295588, calculator.calculate(-PERIOD -2.8))
+        assertBigDouble(-9.586844837741198E19, calculator.calculate(-PERIOD -3.1123781))
+        assertBigDouble(-1.220228680717506E21, calculator.calculate(-PERIOD -3.1637666))
+        assertBigDouble(0.9059008627982679, calculator.calculate(-PERIOD -3.66))
+        assertBigDouble(5594.949849617823, calculator.calculate(-PERIOD -3.685426))
+        assertBigDouble(1.9619132113330196E16, calculator.calculate(-PERIOD -3.8))
+        assertBigDouble(60720.80272095946, calculator.calculate(-PERIOD -5.889))
+        assertBigDouble(-2.2904271349315795, calculator.calculate(-PERIOD -5.95))
+        assertBigDouble(-9.314531252837875E9, calculator.calculate(-PERIOD -6.1789174))
+        assertBigDouble(-1.2658054556539495E33, calculator.calculate(-PERIOD -6.28))
+    }
+
+    @Test
+    fun testOn100thPeriod() {
+        assertBigDouble(-1.562500435646825E110, calculator.calculate(- 100 * PERIOD -1.0E-8))
+        assertBigDouble(-7.199400495612413E12, calculator.calculate(- 100 * PERIOD -0.112))
+        assertBigDouble(-210297.749052139, calculator.calculate(- 100 * PERIOD -0.5))
+        assertBigDouble(-1757.8922042876907, calculator.calculate(- 100 * PERIOD -0.64))
+        assertBigDouble(-1.869931113367555E7, calculator.calculate(- 100 * PERIOD -0.66))
+        assertBigDouble(1.4542650843086908E7, calculator.calculate(- 100 * PERIOD -2.25))
+        assertBigDouble(4756791.712747779, calculator.calculate(- 100 * PERIOD -2.2818))
+        assertBigDouble(6892356.123178437, calculator.calculate(- 100 * PERIOD -2.303))
+        assertBigDouble(4.661155269375071E7, calculator.calculate(- 100 * PERIOD -2.344))
+        assertEquals(0.0, calculator.calculate(- 100 * PERIOD -3 * Math.PI / 4), 1E-6)
+        assertBigDouble(-3.1853823000403974E7, calculator.calculate(- 100 * PERIOD -2.359))
+        assertBigDouble(2.610368742533695E7, calculator.calculate(- 100 * PERIOD -2.422))
+        assertBigDouble(-1206454.380274456, calculator.calculate(- 100 * PERIOD -2.42270101))
+        assertBigDouble(-2.5475768135351714E8, calculator.calculate(- 100 * PERIOD -2.4381))
+        assertBigDouble(-5500786.236013713, calculator.calculate(- 100 * PERIOD -2.509))
+        assertBigDouble(-2191.8274562229167, calculator.calculate(- 100 * PERIOD -2.59999))
+        assertBigDouble(-1937943.7119295588, calculator.calculate(- 100 * PERIOD -2.8))
+        assertBigDouble(-9.586844837741198E19, calculator.calculate(- 100 * PERIOD -3.1123781))
+        assertBigDouble(-1.220228680717506E21, calculator.calculate(- 100 * PERIOD -3.1637666))
+        assertBigDouble(0.9059008627982679, calculator.calculate(- 100 * PERIOD -3.66))
+        assertBigDouble(5594.949849617823, calculator.calculate(- 100 * PERIOD -3.685426))
+        assertBigDouble(1.9619132113330196E16, calculator.calculate(- 100 * PERIOD -3.8))
+        assertBigDouble(60720.80272095946, calculator.calculate(- 100 * PERIOD -5.889))
+        assertBigDouble(-2.2904271349315795, calculator.calculate(- 100 * PERIOD -5.95))
+        assertBigDouble(-9.314531252837875E9, calculator.calculate(- 100 * PERIOD -6.1789174))
+        assertBigDouble(-1.2658054556539495E33, calculator.calculate(- 100 * PERIOD -6.28))
+    }
+
+    @Test
+    fun testLogFunction() {
         assertEquals(5.633, calculator.calculate(0.35), 1E-3)
         assertEquals(2.132, calculator.calculate(4.339), 1E-3)
         assertEquals(2.517, calculator.calculate(10.0), 1E-3)
         assertEquals(57.865, calculator.calculate(100000.0), 1E-3)
     }
-
 }
