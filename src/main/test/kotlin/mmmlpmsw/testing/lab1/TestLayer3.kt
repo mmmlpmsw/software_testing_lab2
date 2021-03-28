@@ -20,7 +20,7 @@ class TestLayer3 {
         TestUtilities.assertBigDouble(4756791.712747779, calculator.calculate(-2.2818))
         TestUtilities.assertBigDouble(6892356.123178437, calculator.calculate(-2.303))
         TestUtilities.assertBigDouble(4.661155269375071E7, calculator.calculate(-2.344))
-        TestUtilities.assertBigDouble(-92.41824433050677, calculator.calculate(-2.3561945))
+        Assertions.assertEquals(0.0, calculator.calculate(-3 * Math.PI / 4), 1E-4)
         TestUtilities.assertBigDouble(-3.1853823000403974E7, calculator.calculate(-2.359))
         TestUtilities.assertBigDouble(2.610368742533695E7, calculator.calculate(-2.422))
         TestUtilities.assertBigDouble(-1206454.380274456, calculator.calculate(-2.42270101))
