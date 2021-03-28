@@ -2,7 +2,7 @@ package mmmlpmsw.testing.lab1
 
 import kotlin.math.abs
 
-class BasicFunctions {
+open class BasicFunctions {
     private val PRECISION = 1E-12
 
     open fun sin(x: Double): Double {

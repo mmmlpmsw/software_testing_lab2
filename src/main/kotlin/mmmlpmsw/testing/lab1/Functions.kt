@@ -5,7 +5,7 @@ open class Functions(private val basicFunctions: BasicFunctions = BasicFunctions
 
     open fun sin(x: Double): Double = basicFunctions.sin(x)
 
-    open fun cos(x: Double) = basicFunctions.sin(x + PI/2)
+    open fun cos(x: Double) = sin(x + PI/2)
 
     open fun tan(x: Double) = sin(x)/cos(x)
 

@@ -566,6 +566,9 @@ class TestLayer1 {
     fun aaaaa() { //todo move to different tests
         val calculator = FunctionCalculator(mock)
         assertBigDouble(Double.NaN, calculator.calculate(0.0))
+        assertBigDouble(Double.NaN, calculator.calculate(Double.POSITIVE_INFINITY))
+        assertBigDouble(Double.NaN, calculator.calculate(Double.NEGATIVE_INFINITY))
+
         assertBigDouble(-1.562500435646825E110, calculator.calculate(-1.0E-8))
         assertBigDouble(-7.199400495612413E12, calculator.calculate(-0.112))
         assertBigDouble(-210297.749052139, calculator.calculate(-0.5))
