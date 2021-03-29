@@ -848,6 +848,34 @@ class TestLayer1 {
         Mockito.`when`(mock.csc(-100 * PERIOD -5.537)).thenReturn(1.473095445994513)
         Mockito.`when`(mock.csc(-100 * PERIOD -6.045)).thenReturn(4.238373662915531)
         Mockito.`when`(mock.csc(-100 * PERIOD -6.05)).thenReturn(4.327547045345466)
+
+//===========================================================================================
+//                        positive values
+//===========================================================================================
+
+        Mockito.`when`(mock.ln(0.35)).thenReturn(-1.0498221244986778)
+        Mockito.`when`(mock.ln(4.339)).thenReturn(1.4676439068162137)
+        Mockito.`when`(mock.ln(10.0)).thenReturn(2.302585092994046)
+        Mockito.`when`(mock.ln(100000.0)).thenReturn(11.512925464970229)
+        Mockito.`when`(mock.ln(Double.POSITIVE_INFINITY)).thenReturn(Double.NaN)
+
+        Mockito.`when`(mock.log2(0.35)).thenReturn(-1.5145731728297585)
+        Mockito.`when`(mock.log2(4.339)).thenReturn(2.1173625861546554)
+        Mockito.`when`(mock.log2(10.0)).thenReturn(3.3219280948873626)
+        Mockito.`when`(mock.log2(100000.0)).thenReturn(16.609640474436812)
+        Mockito.`when`(mock.log2(Double.POSITIVE_INFINITY)).thenReturn(Double.NaN)
+
+        Mockito.`when`(mock.log5(0.35)).thenReturn(-0.6522911610246187)
+        Mockito.`when`(mock.log5(4.339)).thenReturn(0.9118984307984652)
+        Mockito.`when`(mock.log5(10.0)).thenReturn(1.4306765580733933)
+        Mockito.`when`(mock.log5(100000.0)).thenReturn(7.153382790366966)
+        Mockito.`when`(mock.log5(Double.POSITIVE_INFINITY)).thenReturn(Double.NaN)
+
+        Mockito.`when`(mock.log10(0.35)).thenReturn(-0.4559319556497244)
+        Mockito.`when`(mock.log10(4.339)).thenReturn(0.637389650129212)
+        Mockito.`when`(mock.log10(10.0)).thenReturn(1.0)
+        Mockito.`when`(mock.log10(100000.0)).thenReturn(5.0)
+        Mockito.`when`(mock.log10(Double.POSITIVE_INFINITY)).thenReturn(Double.NaN)
     }
 
     @Test
