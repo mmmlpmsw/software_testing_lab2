@@ -2,7 +2,7 @@ package mmmlpmsw.testing.lab1
 
 import java.io.File
 import java.io.FileNotFoundException
-import java.io.FileWriter
+import java.io.PrintWriter
 
 class Utilities(private val calculator: FunctionCalculator) {
 
@@ -19,27 +19,29 @@ class Utilities(private val calculator: FunctionCalculator) {
 
     private val CSV_HEADER =
             "x,f(x),sin(x),cos(x),tan(x),cot(x),sec(x),csc(x),log_2(x),log_3(x),log_5(x),log_10(x),ln(x)\n"
-    private val FILENAME = "out/out.csv"
+    private val FILENAME = "out.csv"
 
     fun createSCV(from: Double, to: Double, step: Double) {
-        var fileWriter: FileWriter?
         try {
-            fileWriter = FileWriter(FILENAME)
+            PrintWriter(File("test.csv")).use { writer ->
+                val sb = StringBuilder()
+                var cur: Double = from
+                sb.append("X, Y, sin(X), cos(X), tan(X), cot(X), sec(X), csc(X) \n")
+                while (cur < to) {
+                    sb.append(cur).append(", ").append(calculator.calculate(cur)).append(", ").append(sin(cur)).append(", ").append(cos(cur))
+                            .append(", ").append(tan(cur)).append(", ").append(cot(cur)).append(", ").append(sec(cur)).append(", ")
+                            .append(csc(cur)).append("\n")
+                    cur += step
+                }
+                writer.write(sb.toString())
+                writer.flush()
+            }
         } catch (e: FileNotFoundException) {
-            File(FILENAME).createNewFile()
-            fileWriter = FileWriter(FILENAME)
+            e.printStackTrace()
         }
-        fileWriter!!.append(CSV_HEADER)
-        var cur = from
-        while (cur < to) {
-            fileWriter.append(
-                    "$cur,${calculator.calculate(cur)},${sin(cur)},${cos(cur)}," +
-                            "${tan(cur)},${cot(cur)},${sec(cur)},${csc(cur)},${log2(cur)}," +
-                            "${log5(cur)},${log10(cur)},${ln(cur)}\n"
-            )
-            cur += step
-        }
-        fileWriter.flush()
-        fileWriter.close()
     }
+}
+
+fun main() {
+    Utilities(FunctionCalculator()).createSCV(-2 * Math.PI, 0.0, 1.0)
 }
