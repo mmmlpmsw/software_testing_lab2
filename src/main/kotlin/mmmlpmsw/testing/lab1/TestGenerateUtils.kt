@@ -12,7 +12,8 @@ fun generateMock1st() {
             -1.054,
             -2.284, -2.285, // local min
             -2.29, -2.344, //local max
-            - 3 * Math.PI/4, -2.4,
+            - 3 * Math.PI/4, //f(x) = 0
+            -2.4,
             -2.4227, //f(x) = 0
             -2.4401, // local min
             -2.5, -2.668, //local max
