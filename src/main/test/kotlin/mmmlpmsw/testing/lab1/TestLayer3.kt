@@ -2,6 +2,7 @@ package mmmlpmsw.testing.lab1
 
 import mmmlpmsw.testing.lab1.TestUtilities.Companion.assertBigDouble
 import org.junit.jupiter.api.*
+import java.lang.IllegalArgumentException
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class TestLayer3 {
@@ -174,5 +175,7 @@ class TestLayer3 {
         Assertions.assertEquals(2.132, calculator.calculate(4.339), 1E-3)
         Assertions.assertEquals(2.517, calculator.calculate(10.0), 1E-3)
         Assertions.assertEquals(57.865, calculator.calculate(100000.0), 1E-3)
+        assertThrows<IllegalArgumentException> { calculator.f.ln(-1.0) }
     }
+
 }

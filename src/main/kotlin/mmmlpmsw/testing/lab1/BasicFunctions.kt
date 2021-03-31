@@ -1,5 +1,6 @@
 package mmmlpmsw.testing.lab1
 
+import java.lang.IllegalArgumentException
 import kotlin.math.abs
 
 open class BasicFunctions {
@@ -21,6 +22,8 @@ open class BasicFunctions {
     }
 
     open fun ln(x: Double): Double {
+        if (x <= 0)
+            throw IllegalArgumentException("Cannot pass negative value to log")
         val x1 = (x - 1) / (x + 1)
         var cur = x1
         var res = 0.0
